@@ -1,3 +1,4 @@
+// station_apiで取得した駅データを成形
 package repositoryimpl
 
 import (
