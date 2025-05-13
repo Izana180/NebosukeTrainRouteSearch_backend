@@ -2,11 +2,9 @@
 package odpt
 
 import(
-	"os"
 	"fmt"
 	"net/http"
 	"encoding/json"
-	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/domain/model"
 )
 
 type odptStationResponse struct{
@@ -14,8 +12,7 @@ type odptStationResponse struct{
 	ID string `json:"@id"`
 }
 
-func FetchStationsFromOdpt() ([]*model.Station, error){
-	apiKey := os.Getenv("ODPT_API_KEY")
+func FetchStationsFromOdpt(apiKey string) ([]odptStationResponse, error){
 	if apiKey == "" {
 		return nil, fmt.Errorf("APIKEY is not set")
 	}
@@ -28,18 +25,11 @@ func FetchStationsFromOdpt() ([]*model.Station, error){
 	}
 	defer resp.Body.Close()
 
-	var odptStations []odptStationResponse
+	var raw []odptStationResponse
 	// レスポンスの成形
-	if err := json.NewDecoder(resp.Body).Decode(&odptStations); err != nil {
+	if err := json.NewDecoder(resp.Body).Decode(&raw); err != nil {
 		return nil, fmt.Errorf("failed decoding response: %w", err)
 	}
 
-	var stations []*model.Station
-	for _, s := range odptStations {
-		stations = append(stations, &model.Station{
-			Name: s.Title,
-			ID: s.ID,
-		})
-	}
-	return stations, nil
+	return raw, err
 }
