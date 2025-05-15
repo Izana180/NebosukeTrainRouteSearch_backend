@@ -1,0 +1,48 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "ねぼすけあんないのAPI",
+        "title": "NebosukeRouteAPI",
+        "contact": {}
+    },
+    "paths": {
+        "/stations": {
+            "get": {
+                "description": "外部APIから取得した全駅一覧を返す",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "stations"
+                ],
+                "summary": "駅一覧の取得",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Station"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.Station": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "urn:ucode:_00001C0000000000000100000341B4E7"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "渋谷"
+                }
+            }
+        }
+    }
+}
