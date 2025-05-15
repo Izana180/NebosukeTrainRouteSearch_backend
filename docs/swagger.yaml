@@ -1,0 +1,31 @@
+definitions:
+  model.Station:
+    properties:
+      id:
+        example: urn:ucode:_00001C0000000000000100000341B4E7
+        type: string
+      name:
+        example: 渋谷
+        type: string
+    type: object
+info:
+  contact: {}
+  description: ねぼすけあんないのAPI
+  title: NebosukeRouteAPI
+paths:
+  /stations:
+    get:
+      description: 外部APIから取得した全駅一覧を返す
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Station'
+            type: array
+      summary: 駅一覧の取得
+      tags:
+      - stations
+swagger: "2.0"

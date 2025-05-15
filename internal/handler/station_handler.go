@@ -17,6 +17,13 @@ func NewStationHandler(u usecase.StationUsecase) *StationHandler {
 	}
 }
 
+// GetAllStations godoc
+// @Summary 駅一覧の取得
+// @Description 外部APIから取得した全駅一覧を返す
+// @Tags stations
+// @Produce json
+// @Success 200 {array} model.Station
+// @Router /stations [get]
 func (h *StationHandler) GetAllStations(c *gin.Context) {
 	stations, err := h.usecase.GetAllStations()
 	if err != nil {
