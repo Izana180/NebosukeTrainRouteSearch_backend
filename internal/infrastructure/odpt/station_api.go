@@ -1,18 +1,18 @@
 // 公共交通センターAPIから全国の駅データを取得
 package odpt
 
-import(
+import (
+	"encoding/json"
 	"fmt"
 	"net/http"
-	"encoding/json"
 )
 
-type odptStationResponse struct{
+type odptStationResponse struct {
 	Title string `json:"dc:title"`
-	ID string `json:"@id"`
+	ID    string `json:"@id"`
 }
 
-func FetchStationsFromOdpt(apiKey string) ([]odptStationResponse, error){
+func FetchStationsFromOdpt(apiKey string) ([]odptStationResponse, error) {
 	if apiKey == "" {
 		return nil, fmt.Errorf("APIKEY is not set")
 	}
