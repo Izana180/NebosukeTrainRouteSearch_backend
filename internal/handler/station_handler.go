@@ -1,11 +1,10 @@
 package handler
 
 import (
-	"net/http"
-	"github.com/gin-gonic/gin"
 	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/usecase"
+	"github.com/gin-gonic/gin"
+	"net/http"
 )
-
 
 type StationHandler struct {
 	usecase usecase.StationUsecase
