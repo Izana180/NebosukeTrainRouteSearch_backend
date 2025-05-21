@@ -8,7 +8,8 @@ import (
 	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/domain/repository"
 	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/infrastructure/odpt"
 )
-type stationRepository struct{
+
+type stationRepository struct {
 	apiKey string
 }
 
@@ -27,7 +28,7 @@ func (r *stationRepository) FetchAllStations() ([]*model.Station, error) {
 	var stations []*model.Station
 	for _, raw := range rawStations {
 		stations = append(stations, &model.Station{
-			ID: raw.ID,
+			ID:   raw.ID,
 			Name: raw.Title,
 		})
 	}
