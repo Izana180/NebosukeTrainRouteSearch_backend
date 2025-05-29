@@ -7,33 +7,38 @@ import (
 	"log"
 	"os"
 
-    "github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
+	_ "github.com/Izana180/NebosukeTrainRouteSearch_backend/docs"
 	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/handler"
 	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/interface/repositoryimpl"
 	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/usecase"
-    _ "github.com/Izana180/NebosukeTrainRouteSearch_backend/docs"
-    "github.com/swaggo/gin-swagger"
-    "github.com/swaggo/files"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"github.com/swaggo/files"
+	"github.com/swaggo/gin-swagger"
 )
 
 func main() {
-    if err := godotenv.Load("configs/.env"); err != nil {
-        log.Println("env file not found")
-    }
+	if err := godotenv.Load("configs/.env"); err != nil {
+		log.Println("env file not found")
+	}
 
-    port := os.Getenv("APP_PORT")
+	port := os.Getenv("APP_PORT")
 
-    repo := repositoryimpl.NewStationRepository()
-    uc := usecase.NewStationUsecase(repo)
-    stationHandler := handler.NewStationHandler(uc)
+	stationRepo := repositoryimpl.NewStationRepository()
+	stationUc := usecase.NewStationUsecase(stationRepo)
+	stationHandler := handler.NewStationHandler(stationUc)
 
-    r := gin.Default()
-    r.GET("/stations", stationHandler.GetAllStations)
-    r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	routeRepo := repositoryimpl.NewRouteRepository()
+	routeUc := usecase.NewRouteUsecase(routeRepo)
+	routeHandler := handler.NewRouteHandler(routeUc)
 
-    log.Println("server successfully runnning on " + port)
-    if err := r.Run(":" + port); err != nil {
-        log.Fatal(err)
-    }
+	r := gin.Default()
+	r.GET("/stations", stationHandler.GetAllStations)
+	r.GET("/routesearch", routeHandler.GetRoute)
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	log.Println("server successfully runnning on " + port)
+	if err := r.Run(":" + port); err != nil {
+		log.Fatal(err)
+	}
 }

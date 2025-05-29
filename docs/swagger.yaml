@@ -1,4 +1,35 @@
 definitions:
+  model.Route:
+    properties:
+      steps:
+        items:
+          $ref: '#/definitions/model.RouteStep'
+        type: array
+      total_fare:
+        example: 270
+        type: integer
+      total_time:
+        example: 30
+        type: integer
+    type: object
+  model.RouteStep:
+    properties:
+      arrival_station:
+        example: 新川崎
+        type: string
+      departure_station:
+        example: 新橋
+        type: string
+      from_time:
+        example: "2025-05-28T10:01:00+09:00"
+        type: string
+      movetype:
+        example: local_train
+        type: string
+      to_time:
+        example: "2025-05-28T10:13:00+09:00"
+        type: string
+    type: object
   model.Station:
     properties:
       id:
@@ -13,6 +44,46 @@ info:
   description: ねぼすけあんないのAPI
   title: NebosukeRouteAPI
 paths:
+  /routesearch:
+    get:
+      description: 出発駅、到着駅、経由駅、出発時刻もしくは到着時刻を受け取り、経路を検索して返す
+      parameters:
+      - description: '出発駅のnodeID(例: 00004464)'
+        in: query
+        name: from
+        required: true
+        type: string
+      - description: '到着駅のnodeID(例: 00004254)'
+        in: query
+        name: to
+        required: true
+        type: string
+      - description: '日付と時刻（例: 2025-05-28T10:00）'
+        in: query
+        name: datetime
+        required: true
+        type: string
+      - description: 'datetimeが到着時刻かどうか(デフォルト: false)'
+        in: query
+        name: isArrivalTime
+        type: boolean
+      - collectionFormat: csv
+        description: 経由地(nodeID)※複数指定可能
+        in: query
+        items:
+          type: string
+        name: via
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Route'
+      summary: 経路検索
+      tags:
+      - routes
   /stations:
     get:
       description: 外部APIから取得した全駅一覧を返す
