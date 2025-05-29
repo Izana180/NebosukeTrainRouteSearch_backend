@@ -1,3 +1,4 @@
 ODPT_API_KEY=xxxxxxxxxxxxxxx
 NAVITIME_API_KEY=xxxxxxxxxxxxxxx
+NAVITIME_API_HOST=xxx.com
 APP_PORT=8080
