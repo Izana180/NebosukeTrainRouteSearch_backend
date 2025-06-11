@@ -9,8 +9,8 @@ import (
 
 	_ "github.com/Izana180/NebosukeTrainRouteSearch_backend/docs"
 	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/handler"
-	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/interface/repositoryimpl"
 	"github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/usecase"
+    "github.com/Izana180/NebosukeTrainRouteSearch_backend/internal/infrastructure/repositoryimpl"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/swaggo/files"
