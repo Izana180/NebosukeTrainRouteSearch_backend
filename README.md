@@ -42,8 +42,9 @@ https://app.swaggerhub.com/apis/izana-42a/nebosuke-route_api/1.0.0
 | to | 必須 | 到着駅のNodeID(string) |
 | datetime | 必須 | 出発あるいは到着時刻(string) |
 | isArrivalTime | 任意 | datetimeが到着時刻かどうか(bool)  ※デフォルトはfalse |
-| via | 任意 | 経由駅のNodeID(string[]) |
-レスポンス形式:  
+| via | 任意 | 経由駅のNodeID(string[]) |  
+
+レスポンス形式: 
 ```
 {
   "steps": [
