@@ -34,6 +34,7 @@ type navitimeResponse struct {
 			FromTime string `json:"from_time,omitempty"`
 			ToTime   string `json:"to_time,omitempty"`
 			Move     string `json:"move,omitempty"`
+			LineName string `json:"line_name,omitempty"`
 		} `json:"sections"`
 	} `json:"items"`
 }
@@ -121,6 +122,7 @@ func (r *routeRepository) FetchRouteWithNodeid(from, to, datetime string, via []
 					Fromtime:         section.FromTime,
 					Totime:           section.ToTime,
 					Movetype:         section.Move,
+					LineName:         section.LineName,
 				})
 			}
 		}
