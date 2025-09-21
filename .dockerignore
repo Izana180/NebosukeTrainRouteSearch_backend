@@ -1,0 +1,36 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# Test files
+unitTests/
+*_test.go
+
+# API Response files (test data)
+apiResponse/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
