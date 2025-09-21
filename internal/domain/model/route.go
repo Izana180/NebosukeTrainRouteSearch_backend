@@ -14,4 +14,5 @@ type RouteStep struct {
 	Fromtime         string `json:"from_time" example:"2025-05-28T10:01:00+09:00" description:"出発時間"`
 	Totime           string `json:"to_time" example:"2025-05-28T10:13:00+09:00" description:"到着時間"`
 	Movetype         string `json:"movetype" example:"local_train" description:"移動手段"`
+	LineName         string `json:"line_name" example:"JR中央線快速" description:"路線名"`
 }
