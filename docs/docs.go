@@ -133,6 +133,10 @@ const docTemplate = `{
                     "type": "string",
                     "example": "2025-05-28T10:01:00+09:00"
                 },
+                "line_name": {
+                    "type": "string",
+                    "example": "JR中央線快速"
+                },
                 "movetype": {
                     "type": "string",
                     "example": "local_train"
